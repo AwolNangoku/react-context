@@ -13,12 +13,14 @@ const StaffMember = () =>(
   </NameContext.Consumer>
 )
 
-function App() {
-  return (
+const App = (props) =>
+   (
     <div className="App">
+      <NameContext.Provider value={props.user}>
         <Employer />
+
+      </NameContext.Provider>
     </div>
-  );
-}
+  )
 
 export default App;

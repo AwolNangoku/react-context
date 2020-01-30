@@ -3,4 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const user = {
+	name: 'Khuze',
+	lastname: 'Mayekiso'
+}
+
+ReactDOM.render(<App user={user}/>, document.getElementById('root'));
