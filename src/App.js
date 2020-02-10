@@ -1,26 +1,35 @@
 import React from 'react';
-import NameContext from './contexts/NameContext';
 import logo from './logo.svg';
 import './App.css';
 
-const Employer = () => (<StaffMember />)
+const PersonForm = ({clearName, saveName, firstname}) =>(
+  <div>
+      <div>
+        <label for='firstname'>
+          Firstname:
+          <input type='text' />
+        </label>
+        <button onClick={() => clearName ? clearName : console.log('Firstname cleared..')}>Clear Firstname</button>
+        <button onClick={() => saveName ? saveName(firstname) : console.log('Lastname cleared..')}>Save Firstname </button>
+      </div>
 
-const StaffMember = () =>(
-  <NameContext.Consumer>
-    {
-      ({name, lastname}) => (<div>Your name is: {name}</div>)
-    }
-  </NameContext.Consumer>
+      <div>
+        <label for='lastname'>
+          Lastname:
+          <input type='text' />
+        </label>
+        <button>Clear Lastname</button>
+        <button>Save Lastname </button>
+      </div>
+  </div>
 )
 
-const App = (props) =>
-   (
-    <div className="App">
-      <NameContext.Provider value={props.user}>
-        <Employer />
-
-      </NameContext.Provider>
+const App = () => {
+  return (
+    <div>
+      <PersonForm />
     </div>
-  )
+    );
+}
 
 export default App;
