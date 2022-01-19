@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { PageLayout } from "../../components/structure";
 
 export default function Login() {
   const [name, setName] = useState([]);
@@ -35,7 +36,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <PageLayout>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -76,6 +77,6 @@ export default function Login() {
           </ul>
         ) : null}
       </div>
-    </div>
+    </PageLayout>
   );
 }
