@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/schedule-pickup" element={<ShippingPage />} />
-        <Route path="/my-account" element={<AccountPage />} />
+        <Route path="/profile" element={<AccountPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
