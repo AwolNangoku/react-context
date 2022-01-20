@@ -1,72 +1,71 @@
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { PageLayout } from "../../components/structure";
+import { requestGET, requestPOST } from "../../utils/network-requests";
 
 export default function Login() {
+  const { register, handleSubmit } = useForm();
+
   const [name, setName] = useState([]);
   const [lastName, setLastName] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/")
-      .then((res) => res.json())
-      .then((users) => setUsers(users));
+    const url = "http://localhost:3000/users/";
+    requestGET({ url }).then((users) => setUsers(users));
   }, []);
 
-  const postUser = async (user) => {
-    let addedUsers = [];
+  const onSubmit = async (user) => {
+    const url = "http://localhost:3000/users/register";
     try {
-      addedUsers = await fetch("http://localhost:3000/users/register", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...user, id: uuidv4() }),
-        "Content-Type": "application/json",
-      }).then((users) => users.json());
+      const addedUsers = await requestPOST({
+        url,
+        data: { ...user, id: uuidv4() },
+      });
       if (addedUsers) {
         setUsers(addedUsers);
       }
     } catch (e) {
       console.log("Failed adding new user");
-    } finally {
-      console.log("User has been added...");
     }
   };
 
   return (
     <PageLayout>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          postUser({ name, lastName });
-        }}
-      >
-        <div>
-          <label htmlFor="name">Name:</label>
-          <div>
-            <input
-              type="text"
-              id="name"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-        </div>
+      <div className="flex flex-col">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col space-y-4">
+            <h2>Enter the following details to signin</h2>
+            <div className="flex flex-col spacey-3">
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="email_address">Email address:</label>
+                <input
+                  className="border-2"
+                  type="text"
+                  id="email_address"
+                  {...register("emailAddress")}
+                />
+              </div>
 
-        <div>
-          <label htmlFor="lastname">Last name:</label>
-          <div>
-            <input
-              type="text"
-              id="lastname"
-              onChange={(e) => setLastName(e.target.value)}
-            />
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="password">Password</label>
+                <input
+                  className="border-2"
+                  type="password"
+                  id="password"
+                  {...register("password")}
+                />
+              </div>
+            </div>
+            <div>
+              <button className="border-2 p-2 rounded bg-blue-400">
+                Signin
+              </button>
+            </div>
           </div>
-        </div>
-
-        <button>Add user</button>
-      </form>
+        </form>
+      </div>
 
       <div>
         {users.length > 0 ? (

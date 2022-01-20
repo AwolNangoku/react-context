@@ -16,7 +16,7 @@ export default function Layout({ children }) {
         </div>
         <div className="flex items-center">
           <nav className="flex space-x-4">
-            <NavLink to="/schedule-pickup">SCHEDULE PICKUP</NavLink>
+            <NavLink to="/shipping">SCHEDULE PICKUP</NavLink>
             <NavLink to="/profile">PROFILE</NavLink>
             <NavLink to="/register">SIGN UP</NavLink>
           </nav>
