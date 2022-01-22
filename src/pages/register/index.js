@@ -55,6 +55,16 @@ export default function Register() {
                   {...register("email_address")}
                 />
               </div>
+
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="password">Password:</label>
+                <input
+                  className="border-2"
+                  type="text"
+                  id="password"
+                  {...register("password")}
+                />
+              </div>
             </div>
             <div>
               <button className="border-2 p-2 rounded bg-blue-400">
