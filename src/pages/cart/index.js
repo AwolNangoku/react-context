@@ -1,10 +1,15 @@
 import React from "react";
+import { NavLink } from "../../components/navigation";
 import { PageLayout } from "../../components/structure";
 
 export default function Cart() {
   return (
     <PageLayout>
-      <div>Cart Content</div>
+      <div>
+        <div>
+          <NavLink to="/shipping">SHIPPING DELIVERY</NavLink>
+        </div>
+      </div>
     </PageLayout>
   );
 }

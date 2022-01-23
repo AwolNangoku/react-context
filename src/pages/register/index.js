@@ -1,13 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { PageLayout } from "../../components/structure";
+import useAuth from "../../hooks/use-auth";
 
 export default function Register() {
+  const { registerAccount } = useAuth();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {
-    console.log("---Registration details---", data);
-  };
+  const onSubmit = (accountInfo) =>
+    registerAccount(accountInfo, () =>
+      navigate("/profile", {
+        replace: true,
+      })
+    );
 
   return (
     <PageLayout>
@@ -50,9 +57,9 @@ export default function Register() {
                 <label htmlFor="email_address">Email address:</label>
                 <input
                   className="border-2"
-                  type="text"
+                  type="email"
                   id="email_address"
-                  {...register("email_address")}
+                  {...register("email_address", { required: true })}
                 />
               </div>
 
@@ -60,7 +67,7 @@ export default function Register() {
                 <label htmlFor="password">Password:</label>
                 <input
                   className="border-2"
-                  type="text"
+                  type="password"
                   id="password"
                   {...register("password")}
                 />

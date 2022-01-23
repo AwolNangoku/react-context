@@ -8,7 +8,7 @@ export const signOut = async (callback) => {
       data: {},
     });
 
-    if (logoutRes.ok) {
+    if (logoutRes.ok && callback) {
       callback();
     }
   } catch (e) {

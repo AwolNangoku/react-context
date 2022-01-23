@@ -5,7 +5,7 @@ import { NavLink, SiteTopNav } from "../navigation";
 
 export default function Layout({ children }) {
   return (
-    <div className="flex flex-col items-center w-full h-screen justify-between">
+    <div className="flex flex-col items-center w-full justify-between">
       <div className="border-b-2 w-2/3 p-4 flex justify-between">
         <div>
           <div className="w-20">

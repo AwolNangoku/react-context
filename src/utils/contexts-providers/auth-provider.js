@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PopTypes from "prop-types";
 import { AuthContext } from "../contexts";
-import { signin, signOut } from "../account";
+import { signin, registerAccount } from "../account";
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState();
@@ -17,7 +17,17 @@ export default function AuthProvider({ children }) {
             callBack();
           }
         },
-        signOut: () => signOut(setUser),
+        signOut: () => {
+          // signOut(setUser);
+          setUser();
+        },
+        registerAccount: async (accountInfo, callBack) => {
+          const registeredUser = await registerAccount(accountInfo);
+          if (registeredUser) {
+            setUser(registeredUser);
+            callBack();
+          }
+        },
       }}
     >
       {children}

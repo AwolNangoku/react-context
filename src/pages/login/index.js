@@ -13,7 +13,7 @@ export default function Login() {
 
   const onSubmit = (logins) =>
     signin(logins, () =>
-      navigate(location.state?.from?.pathname || "/", {
+      navigate(location.state?.from?.pathname || "/shop", {
         replace: true,
       })
     );
