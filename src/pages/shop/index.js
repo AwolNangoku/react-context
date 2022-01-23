@@ -42,10 +42,11 @@ export default function Shop() {
           </h1>
           <ul className="grid grid-cols-3">
             {catalog.map((product) => (
-              <li className="hover:bg-gray-200 hover:cursor-pointer h-24">
+              <li className="hover:bg-gray-200 hover:cursor-pointer">
                 <img src="#" alt="not available" />
-                <div>
+                <div className="flex flex-col">
                   <span>{product.name}</span>
+                  <span>{product.description}</span>
                   <span>{product.cost}</span>
                 </div>
               </li>
