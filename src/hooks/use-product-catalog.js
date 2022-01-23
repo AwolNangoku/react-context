@@ -12,7 +12,5 @@ export default function useProductCatalog() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [catalog]);
 
-  console.log(catalog);
-
   return catalog || [];
 }
