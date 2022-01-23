@@ -1,10 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "../../components/navigation";
 import { PageLayout } from "../../components/structure";
 import useProductCatalog from "../../hooks/use-product-catalog";
+import { addCartItem } from "../../features/cart/cartSlice";
 
 export default function Shop() {
   const catalog = useProductCatalog();
+  const dispatch = useDispatch();
 
   return (
     <PageLayout>
@@ -45,12 +48,23 @@ export default function Shop() {
             </h1>
             <ul className="grid grid-cols-3">
               {catalog.map((product) => (
-                <li className="hover:bg-gray-200 hover:cursor-pointer">
+                <li
+                  key={product.id}
+                  className="hover:bg-gray-200 hover:cursor-pointer"
+                >
                   <img src="#" alt="not available" />
                   <div className="flex flex-col">
                     <span>{product.name}</span>
                     <span>{product.description}</span>
                     <span>{product.cost}</span>
+                  </div>
+                  <div>
+                    <button
+                      className="bg-blue-400 text-lg"
+                      onClick={() => dispatch(addCartItem(product))}
+                    >
+                      +
+                    </button>
                   </div>
                 </li>
               ))}

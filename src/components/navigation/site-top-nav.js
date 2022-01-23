@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink } from ".";
 import useAuth from "../../hooks/use-auth";
+import useCart from "../../hooks/use-cart";
 
 export default function SiteTopNav() {
   const { user, signOut } = useAuth();
+  const { itemsCount } = useCart();
 
   return (
     <div className="flex items-center">
@@ -12,7 +14,9 @@ export default function SiteTopNav() {
         {!user && <NavLink to="/login">SIGN IN</NavLink>}
         <NavLink to="/profile">PROFILE</NavLink>
         {!user && <NavLink to="/register">SIGN UP</NavLink>}
-        <NavLink to="/cart">CART</NavLink>
+        <NavLink to="/cart">
+          {itemsCount > 0 ? `CART(${itemsCount})` : "CART"}
+        </NavLink>
 
         {user ? (
           <button
