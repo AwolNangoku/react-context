@@ -36,23 +36,27 @@ export default function Shop() {
             </li>
           </ul>
         </div>
-        <div className="col-span-2">
-          <h1 className="mb-4">
-            We ofer laundry services for the following variety of clothes
-          </h1>
-          <ul className="grid grid-cols-3">
-            {catalog.map((product) => (
-              <li className="hover:bg-gray-200 hover:cursor-pointer">
-                <img src="#" alt="not available" />
-                <div className="flex flex-col">
-                  <span>{product.name}</span>
-                  <span>{product.description}</span>
-                  <span>{product.cost}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {!catalog ? (
+          <p>Loading services...</p>
+        ) : (
+          <div className="col-span-2">
+            <h1 className="mb-4">
+              We ofer laundry services for the following variety of clothes
+            </h1>
+            <ul className="grid grid-cols-3">
+              {catalog.map((product) => (
+                <li className="hover:bg-gray-200 hover:cursor-pointer">
+                  <img src="#" alt="not available" />
+                  <div className="flex flex-col">
+                    <span>{product.name}</span>
+                    <span>{product.description}</span>
+                    <span>{product.cost}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </PageLayout>
   );
